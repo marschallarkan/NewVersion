@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "603198118350",
+    "project_id": "wonderjoys-app",
+    "storage_bucket": "wonderjoys-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603198118350:android:96147a54c0a4e206cfb39f",
+        "android_client_info": {
+          "package_name": "com.example.wonderjoys_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603198118350-vgf36sccuhpr272tf97n2enc9c2vt88u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wonderjoys_2",
+            "certificate_hash": "7fe976272578860a3e38beaec5cc891125c05c6f"
+          }
+        },
+        {
+          "client_id": "603198118350-q6aqvid4ef21uuavsgt9e8l6c1p39m1f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW1wgDwIGboqEiWT0YdmlXr0EYjBxWzb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603198118350-q6aqvid4ef21uuavsgt9e8l6c1p39m1f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
