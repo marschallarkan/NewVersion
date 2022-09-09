@@ -25,7 +25,9 @@ class Product {
       this.unit,
       this.imageUrls,
       this.seller,
-      this.approved});
+      this.approved,
+      this.productId,
+      });
 
   Product.fromJson(Map<String, Object?> json)
       : this(
@@ -33,7 +35,7 @@ class Product {
     regularPrice: json['regularPrice']! as int,
     salesPrice: json['salesPrice']! as int,
     taxStatus: json['taxStatus']! as String,
-    taxValue: json['taxValue']! as double,
+    taxValue: json['taxValue']==null ? null: json['taxValue']! as double,
     category: json['category']! as String,
     mainCategory: json['mainCategory']==null ? null :json['mainCategory']! as String,
     subCategory: json['subCategory']==null ? null :json['subCategory']! as String,
@@ -78,6 +80,8 @@ class Product {
   final List? imageUrls;
   final    Map?   seller;
   final bool? approved;
+  final String? productId;
+
 
   Map<String, Object?> toJson() {
     return {

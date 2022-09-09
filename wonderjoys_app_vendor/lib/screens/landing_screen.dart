@@ -17,9 +17,9 @@ class LandingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     FirebaseServices _services = FirebaseServices();
     return  Scaffold(
-      body: StreamBuilder<DocumentSnapshot>(
+      body: StreamBuilder<DocumentSnapshot?>(
         stream: _services.vendor.doc(_services.user!.uid).snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot?> snapshot) {
           if (snapshot.hasError) {
             return const Center(child: Text('Something went wrong'));
           }
@@ -32,7 +32,8 @@ class LandingScreen extends StatelessWidget {
           if(snapshot.data!.exists){
             return const RegistrationScreen();
           }
-          Vendor vendor = Vendor.fromJson(snapshot.data!.data() as Map<String,dynamic>);
+
+        final  Vendor vendor = Vendor.fromJson(snapshot.data!.data  as Map<String,dynamic>);
           if(vendor.approved==true){
             return const HomeScreen();
           }
@@ -42,7 +43,7 @@ class LandingScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children:  [
-              Container(
+              SizedBox(
                 height: 80,
                 width: 80,
                 child: ClipRRect(

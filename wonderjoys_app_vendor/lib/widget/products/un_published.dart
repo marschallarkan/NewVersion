@@ -10,8 +10,7 @@ class UnPublishedProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseServices services = FirebaseServices();
-    final FirestoreQueryBuilderSnapshot snapshot;
+
     return FirestoreQueryBuilder<Product>(
       query: productQuery(false),
       builder: (context, snapshot, _) {
@@ -25,7 +24,7 @@ class UnPublishedProduct extends StatelessWidget {
         if(snapshot.docs.isEmpty) {
          return const Center(child: Text('No Un Published Products.'),);
     }
-        return ProductCard(snapshot: snapshot,services: services,);
+        return ProductCard(snapshot: snapshot,);
 
       },
     );
