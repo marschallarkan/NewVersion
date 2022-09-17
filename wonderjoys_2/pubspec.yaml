@@ -23,7 +23,10 @@ dependencies:
   cached_network_image: ^3.2.1
   youtube_player_flutter: ^8.1.0
   flutterfire_ui: ^0.4.3
-
+  google_maps_flutter: ^2.2.0
+  geolocator: ^9.0.1
+  geocoding: ^2.0.5
+  location: ^4.4.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

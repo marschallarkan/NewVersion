@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutterfire_ui/firestore.dart';
+import 'package:wonderjoys_2/Widgets/home_productList.dart';
 import 'package:wonderjoys_2/models/category_model.dart';
 import 'package:wonderjoys_2/screens/main_screen.dart';
 
@@ -24,17 +25,25 @@ class _CategoryWidgetState extends State<CategoryWidget> {
           const SizedBox(
             height: 18,
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Negozi per te',
-                style: TextStyle(fontWeight: FontWeight.bold,
-                  letterSpacing: 1,
-                  fontSize: 20,
+           Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children:  [
+                Text(
+                  'Products per te',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                    fontSize: 20,
+                  ),
                 ),
-              ),
+                TextButton(
+                    child: Text('View all...',style: TextStyle(fontSize: 12,),),
+                    onPressed: (){
+                    },
+                ),
+              ],
             ),
           ),
           Padding(
@@ -92,10 +101,13 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                         },
                         icon: const Icon(IconlyLight.arrowDown),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
+          ),
+          HomeProductList(
+            category: _selectedCategory,
           ),
         ],
       ),

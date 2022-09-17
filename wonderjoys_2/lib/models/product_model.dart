@@ -1,32 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:wonderjoys_app_vendor/firebase_services.dart';
 
 class Product {
   Product(
       {this.productName,
-      this.regularPrice,
-      this.salesPrice,
-      this.taxStatus,
-      this.taxValue,
-      this.category,
-      this.mainCategory,
-      this.subCategory,
-      this.description,
-      this.scheduleDate,
-      this.sku,
-      this.manageInventory,
-      this.soh,
-      this.reOrderLevel,
-      this.chargeShipping,
-      this.shippingCharge,
-      this.brand,
-      this.size,
-      this.otherDetails,
-      this.unit,
-      this.imageUrls,
-      this.seller,
-      this.approved,
-      this.productId,
+        this.regularPrice,
+        this.salesPrice,
+        this.taxStatus,
+        this.taxValue,
+        this.category,
+        this.mainCategory,
+        this.subCategory,
+        this.description,
+        this.scheduleDate,
+        this.sku,
+        this.manageInventory,
+        this.soh,
+        this.reOrderLevel,
+        this.chargeShipping,
+        this.shippingCharge,
+        this.brand,
+        this.size,
+        this.otherDetails,
+        this.unit,
+        this.imageUrls,
+        this.seller,
+        this.approved,
+        this.productId,
       });
 
   Product.fromJson(Map<String, Object?> json)
@@ -111,13 +110,11 @@ class Product {
     };
   }
 }
+productQuery({category}){
+  return  FirebaseFirestore.instance.collection('products').where('approved',isEqualTo: true).where('category',isEqualTo:category )
+      .withConverter<Product>(
+    fromFirestore: (snapshot, _) => Product.fromJson(snapshot.data()!),
+    toFirestore: (product, _) => product.toJson(),
+  );
 
-FirebaseServices _services = FirebaseServices();
-productQuery(approved){
-   return FirebaseFirestore.instance.collection('products').where('approved',isEqualTo: approved ).where('seller.uid',isEqualTo: _services.user!.uid)
-       .orderBy('productName')
-       .withConverter<Product>(
-     fromFirestore: (snapshot, _) => Product.fromJson(snapshot.data()!),
-     toFirestore: (product, _) => product.toJson(),
-   );
- }
+}
