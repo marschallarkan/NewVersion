@@ -1,4 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:convert';
+
+Earthquake earthquakeFromJson(String str) => Earthquake.fromJson(json.decode(str));
+
+String earthquakeToJson(Earthquake data) => json.encode(data.toJson());
+
+class Earthquake {
+  Earthquake({
+     required this.vendor,
+  });
+
+  final List<Vendor>? vendor;
+
+  factory Earthquake.fromJson(Map<String, dynamic> json) => Earthquake(
+    vendor: json["vendor"] == null ? null : List<Vendor>.from(json["vendor"].map((x) => Vendor.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "vendor": vendor == null ? null : List<dynamic>.from(vendor!.map((x) => x.toJson())),
+  };
+}
+
+
+
 
 class Vendor {
 
@@ -34,7 +58,7 @@ class Vendor {
     pinCode: json['pinCode']! as String,
     taxRegistered: json['taxRegistered']! as String,
     time: json['time']! as Timestamp,
-    tinNumber: json['tinNumber']! as String,
+    tinNumber: json['tinNumber'] as String,
     uid: json['uid']! as String,
   );
 

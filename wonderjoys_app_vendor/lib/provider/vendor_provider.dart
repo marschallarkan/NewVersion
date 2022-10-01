@@ -6,16 +6,20 @@ import 'package:wonderjoys_app_vendor/firebase_services.dart';
 import 'package:wonderjoys_app_vendor/model/vendor_model.dart';
 
 class VendorProvider with ChangeNotifier{
-  FirebaseServices _services = FirebaseServices();
-  DocumentSnapshot? doc;
-  Vendor? vendor;
+  FirebaseServices services = FirebaseServices();
+  DocumentSnapshot? doc ;
+   Vendor vendor= Vendor();
 
   getVendorData(){
-    _services.vendor.doc(_services.user!.uid).get().then((document){
+    services.vendor.doc(services.user!.uid).get().then((document){
       doc=document;
-      vendor = Vendor.fromJson(document.data() as Map<String,dynamic>);
+      if(document.data()!=null) {
+        vendor = Vendor.fromJson(document.data() as Map<String,dynamic> );
+      }
       notifyListeners();
+
     });
+
   }
 
 }

@@ -124,7 +124,8 @@ class DotsIndicatorWidget extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           child: DotsIndicator(
             position: scrollPosition ,
-              dotsCount: itemList.length,
+              dotsCount: itemList.isNotEmpty ?
+              itemList.length :2,
               decorator: DotsDecorator(
                 activeColor: Colors.pink.shade900,
                 spacing: const EdgeInsets.all(2),

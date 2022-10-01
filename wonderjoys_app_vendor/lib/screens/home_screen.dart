@@ -12,9 +12,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _vendorData = Provider.of<VendorProvider>(context);
-    if(_vendorData.doc==null){
-      _vendorData.getVendorData();
+    final vendorData = Provider.of<VendorProvider>(context);
+    if(vendorData.doc==null){
+      vendorData.getVendorData();
     }
 
     return  Scaffold(
@@ -22,8 +22,8 @@ class HomeScreen extends StatelessWidget {
         elevation: 0,
         title: Text('Dashboard'),
       ),
-      drawer: CustomDrawer(),
-      body: Center(child: Text('Dashboard',style: TextStyle(fontSize: 22,),),),
+      drawer: const CustomDrawer(),
+      body: const Center(child: Text('Dashboard',style: TextStyle(fontSize: 22,),),),
     );
   }
 }

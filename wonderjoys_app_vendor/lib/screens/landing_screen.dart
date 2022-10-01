@@ -1,3 +1,4 @@
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,11 +16,12 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseServices _services = FirebaseServices();
+    FirebaseServices services = FirebaseServices();
+
     return  Scaffold(
-      body: StreamBuilder<DocumentSnapshot?>(
-        stream: _services.vendor.doc(_services.user!.uid).snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot?> snapshot) {
+      body: StreamBuilder<DocumentSnapshot>(
+        stream: services.vendor.doc(services.user!.uid).snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Center(child: Text('Something went wrong'));
           }
@@ -29,12 +31,16 @@ class LandingScreen extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
+
           if(snapshot.data!.exists){
+            return const HomeScreen();
+          }
+          if(snapshot.data!.data()==null){
             return const RegistrationScreen();
           }
+           Vendor vendor = Vendor.fromJson(snapshot.data as Map<String,dynamic>) ;
 
-        final  Vendor vendor = Vendor.fromJson(snapshot.data!.data  as Map<String,dynamic>);
-          if(vendor.approved==true){
+           if(vendor.approved==true){
             return const HomeScreen();
           }
           return Center(

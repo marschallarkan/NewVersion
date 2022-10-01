@@ -86,13 +86,13 @@ class AddProductScreen extends StatelessWidget {
                   EasyLoading.show(status: 'Please wait ....');
                   _provider.getFormData(
                     seller: {
-                      'name' : _vendor.vendor!.businessName,
+                      'name' : _vendor.vendor.businessName,
                       'uid' : _services.user!.uid,
                     },
                   );
                 _services.uploadFiles(
                   images: _provider.imageFiles,
-                  ref: 'products/${_vendor.vendor!.businessName}/${_provider.productData!['productName']}',
+                  ref: 'products/${_vendor.vendor.businessName}/${_provider.productData!['productName']}',
                   provider: _provider,
                 ).then((value){
                   if(value.isNotEmpty){
